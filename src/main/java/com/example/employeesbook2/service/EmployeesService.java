@@ -17,14 +17,14 @@ public class EmployeesService {
 
     public void addEmpl(String firstName, String lastName) {
         if (count >= listSize) {
-            throw new EmployeeStorageIsFullException();
+            throw new EmployeeStorageIsFullException("Превышена максимальная длинна списка");
         }
         Employees employees = new Employees(firstName, lastName);
         if (!book.contains(employees)) {
             book.add(count++, employees);
             System.out.println("Employees " + firstName + " " + lastName + " was added" + count + " " + book.size());
         } else {
-            throw new EmployeeAlreadyAddedException();
+            throw new EmployeeAlreadyAddedException("Сотрудник с такими данными уже есть в списке");
         }
     }
 
@@ -36,7 +36,7 @@ public class EmployeesService {
             System.out.println("Employees " + firstName + " " + lastName + " was removed");
             return employees;
         }
-        throw new EmployeeNotFoundException();
+        throw new EmployeeNotFoundException("Сотрудник с такими данными не найден");
     }
 
     public Employees findEmpl(String firstName, String lastName) {
@@ -44,7 +44,7 @@ public class EmployeesService {
         if (book.contains(employees)) {
             return employees;
         }
-        throw new EmployeeNotFoundException();
+        throw new EmployeeNotFoundException("Сотрудник с такими данными не найден");
     }
 
 
