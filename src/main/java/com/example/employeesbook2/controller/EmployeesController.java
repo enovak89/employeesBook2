@@ -40,11 +40,7 @@ public class EmployeesController {
 
     @GetMapping("/add")
     public Employees addEmployee(@RequestParam String firstName, @RequestParam String lastName) {
-        emplService.addEmpl(firstName, lastName);
-        Employees employees = emplService.getBook().get(emplService.getCount() - 1);
-        emplService.printAll();
-        return employees;
-
+        return emplService.addEmpl(firstName, lastName);
     }
 
     @GetMapping("/remove")
